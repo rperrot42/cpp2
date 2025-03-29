@@ -30,9 +30,9 @@ void ScalarConverter::convert(const std::string &str) {
 	double	resultDouble;
 //	int		resultInt;
 	char	resultChar = 0;
-//	float	resultFloat;
+	float	resultFloat;
 
-	if (str.size() == 1 && std::isprint(str.at(0))){
+	if (str.size() == 1 && std::isprint(str.at(0)) && str.at(0) < '0' && str.at(0) > '9'){
 		resultChar = static_cast<char>(str.at(0));
 		resultDouble = static_cast<double>(resultChar);
 		std::cout << "char: '" << resultChar << "'" << std::endl;
@@ -48,4 +48,12 @@ void ScalarConverter::convert(const std::string &str) {
 		else
 			std::cout << "char: Non displayable" << std::endl;
 	}
+	resultFloat = static_cast<float>(resultDouble);
+	if (std::isnan(resultDouble)){
+		std::cout << "int: impossible" << std::endl;
+	}
+	else
+		std::cout << "int: " << static_cast<int>(resultDouble) << std::endl;
+	std::cout << "float: " << resultFloat << "f" << std::endl;
+	std::cout << "double: " << resultDouble << std::endl;
 }
