@@ -8,7 +8,8 @@ FLAGS = -Wall -Werror -Wextra -std=c++98
 
 DFLAGS = -MD -MP
 
-SRC = main.cpp
+SRC = main.cpp \
+Base.cpp
 
 SRC_PATH = src/
 
