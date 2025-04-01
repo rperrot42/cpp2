@@ -2,65 +2,42 @@
 # include <ShrubberyCreationForm.hpp>
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "Intern.hpp"
 
 int main()
 {
-	ShrubberyCreationForm s1("s1");
-	RobotomyRequestForm r1("r1");
-	PresidentialPardonForm p1("p1");
-	Bureaucrat b1("Emmanuel Macaron", 1);
-	try
-	{
-		s1.execute(b1);
-		p1.execute(b1);
-		r1.execute(b1);
-		b1.executeForm(s1);
-		b1.executeForm(p1);
-		b1.executeForm(r1);
-	}
-	catch (std::exception &e){
-		std::cerr << e.what() << std::endl;
-	}
-
-	Bureaucrat b2 ("Raphael Perrot", 150);
-	try{
-		s1.execute(b2);
-	}
-	catch (std::exception &e){
-		std::cerr << e.what() << std::endl;
-	}
-	try{
-		p1.execute(b2);
-	}
-	catch (std::exception &e){
-		std::cerr << e.what() << std::endl;
-	}
-	try{
-		r1.execute(b2);
-	}
-	catch (std::exception &e){
-		std::cerr << e.what() << std::endl;
-	}
-
-	try{
-		b2.executeForm(r1);
-	}
-	catch (std::exception &e){
-		std::cerr << e.what() << std::endl;
-	}
-
-	try{
-		b2.executeForm(s1);
-	}
-	catch (std::exception &e){
-		std::cerr << e.what() << std::endl;
-	}
-
-	try{
-		b2.executeForm(p1);
-	}
-	catch (std::exception &e){
-		std::cerr << e.what() << std::endl;
-	}
+	Intern intern;
+	AForm *aform = intern.makeForm("fjri", "frfr");
+	if (aform)
+		std::cout << aform << std::endl;
+	AForm *presidentForm1 = intern.makeForm("Presidential   PARDOn", "president 1");
+	AForm *presidentForm2 = intern.makeForm("PRESIDENTIALPARDON", "president 2");
+	AForm *presidentForm3 = intern.makeForm("presidentialpardon", "president 3");
+	AForm *presidentForm4 = intern.makeForm("PresidentialPARDOn", "president 4");
+	if (presidentForm1)
+		std::cout << *presidentForm1 << std::endl;
+	if (presidentForm2)
+		std::cout << *presidentForm2 << std::endl;
+	if (presidentForm3)
+		std::cout << *presidentForm3 << std::endl;
+	if (presidentForm4)
+		std::cout << *presidentForm4 << std::endl;
+	AForm *robotomyRequest = intern.makeForm("robotomy request", "robotomy");
+	if (robotomyRequest)
+		std::cout<< *robotomyRequest << std::endl;
+	AForm *shrubberyCreation = intern.makeForm("shrubberyCreation", "shrubbery creation");
+	if (shrubberyCreation)
+		std::cout << *shrubberyCreation <<std::endl;
+	Bureaucrat president("Emmanuel Macron", 1);
+	robotomyRequest->execute(president);
+	presidentForm1->execute(president);
+	shrubberyCreation->execute(president);
+	delete presidentForm1;
+	delete presidentForm2;
+	delete presidentForm3;
+	delete presidentForm4;
+	delete robotomyRequest;
+	delete shrubberyCreation;
 
 }
+
