@@ -2,28 +2,28 @@
 // Created by rperrot on 3/31/25.
 //
 
-#ifndef EX01_FORM_HPP
-#define EX01_FORM_HPP
+#ifndef EX01_AFORM_HPP
+#define EX01_AFORM_HPP
 
 #include <iostream>
 #include "Bureaucrat.hpp"
 class Bureaucrat;
 
-class Form
+class AForm
 {
-private:
+protected:
 	bool 				_isSigned;
 	const std::string	_name;
 	const int 			_gradeToSign;
 	const int 			_gradeToExecute;
 
 public:
-	Form();
-	Form(const Form &other);
-	Form(const std::string &name, const int gradeToSign, const int _gradeToExecute);
-	Form &operator=(const Form &other);
-	~Form();
-	void 				beSigned(Bureaucrat &bureaucrat);
+	AForm();
+	AForm(const AForm &other);
+	AForm(const std::string &name, const int gradeToSign, const int _gradeToExecute);
+	AForm &operator=(const AForm &other);
+	virtual ~AForm();
+	void 				beSigned(Bureaucrat &bureaucrat) ;
 	bool				isIsSigned() const;
 	void 				setIsSigned(bool isSigned);
 	const std::string 	&getName() const;
@@ -37,7 +37,8 @@ public:
 	public:
 		virtual const char* what() const throw();
 	};
+	virtual void execute(Bureaucrat const & executor) const = 0;
 };
-std::ostream& operator<<(std::ostream& os, const Form & form);
+std::ostream& operator<<(std::ostream& os, const AForm & form);
 
-#endif //EX01_FORM_HPP
+#endif //EX01_AFORM_HPP

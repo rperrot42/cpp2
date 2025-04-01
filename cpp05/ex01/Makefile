@@ -8,13 +8,13 @@ FLAGS = -Wall -Werror -Wextra -std=c++98
 
 DFLAGS = -MD -MP
 
-SRC = Bureaucrat.cpp \
-		main.cpp \
-		Form.cpp
-
 SRC_PATH = src/
 
 CC = c++
+
+SRC = Form.cpp \
+	Bureaucrat.cpp \
+	main.cpp
 
 CHECK = ✅
 RED = $(shell tput setaf 1)
